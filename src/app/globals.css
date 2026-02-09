@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom OSINT Theme Styles */
+@layer base {
+  html {
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .osint-card {
+    @apply bg-osint-panel border border-osint-border rounded-lg shadow-lg;
+  }
+  
+  .osint-input {
+    @apply w-full px-4 py-3 bg-osint-bg border border-osint-border rounded-lg text-osint-text placeholder-osint-muted focus:outline-none focus:border-osint-primary focus:ring-1 focus:ring-osint-primary transition-colors;
+  }
+  
+  .osint-button {
+    @apply px-6 py-3 bg-gradient-to-r from-osint-primary to-osint-accent text-black font-bold rounded-lg hover:shadow-lg hover:shadow-osint-primary/25 transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .osint-badge {
+    @apply px-3 py-1 bg-osint-border rounded-full text-xs font-medium text-osint-text;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(90deg, #3b82f6, #22c55e, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glitch-text {
+    animation: glitch 2s linear infinite;
+  }
+  
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    2% { transform: translate(-2px, 2px); }
+    4% { transform: translate(2px, -2px); }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Terminal-style text selection */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #e5e7eb;
+}
+
+/* Matrix-style background animation */
+@keyframes matrix {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
+}
+
+.matrix-bg {
+  background: 
+    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: matrix 20s linear infinite;
+}
+
+/* Scan line effect */
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.5), transparent);
+  animation: scan-line 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Cyberpunk neon glow */
+.neon-glow {
+  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  box-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+}
+
+/* Loading animations */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.33);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border: 2px solid #22c55e;
+  border-radius: 999px;
+  animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+/* Terminal cursor blink */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background-color: #22c55e;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Code block styling */
+.code-block {
+  background: #0b1220;
+  border: 1px solid #1f2937;
+  border-left: 4px solid #3b82f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  overflow-x: auto;
+}
+
+/* Alert styles */
+.alert-info {
+  border-left: 4px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.alert-success {
+  border-left: 4px solid #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.alert-warning {
+  border-left: 4px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.alert-danger {
+  border-left: 4px solid #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .matrix-bg {
+    background-size: 100px 100px;
+  }
+}
